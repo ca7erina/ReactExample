@@ -6,7 +6,7 @@ import {
 import Game from './Game';
 import ReduxDemo from './ReactReduxDemo';
 import TodoApp from './Todo';
-
+import Grid from './Grid';
 
 const RouterExample = () => (
   <Router>
@@ -15,12 +15,14 @@ const RouterExample = () => (
         <li><Link to="/game" >Game</Link></li>
         <li><Link to="/redux" >ReduxDemo</Link></li>
         <li><Link to="/todo" >TodoApp</Link></li>
+        <li><Link to="/grid" >Grid</Link></li>
       </ul>
 
       <hr />
       <Route path="/game" component={Game} />
       <Route path="/redux" component={ReduxDemo} />
       <Route path="/todo" component={TodoApp} />
+      <Route path="/grid" component={Grid} />
     </div>
   </Router>
 );

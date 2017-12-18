@@ -2,7 +2,8 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link } from 'react-router-dom';
+  Link
+} from 'react-router-dom';
 
 const BasicExample = () => (
   <Router>
@@ -61,7 +62,7 @@ const Topics = ({ match }) => (
       path={match.url}
       render={() => (
         <h3>Please select a topic.</h3>
-    )}
+      )}
     />
   </div>
 );

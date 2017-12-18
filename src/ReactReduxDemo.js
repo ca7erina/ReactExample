@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+
 
 const counter = (state = 0, action) => {
   switch (action.type) {
@@ -12,21 +12,6 @@ const counter = (state = 0, action) => {
       return state;
   }
 };
-
-const CounterEle = ({
-  value,
-  onIncrement,
-  onDecrement,
-}) => (
-  <div><h1>{value}</h1>
-    <button onClick={onIncrement} >
-    +
-    </button>
-    <button onClick={onDecrement} >
-    -
-    </button>
-  </div>
-);
 
 
 const createStore = (reducer) => {
@@ -61,21 +46,8 @@ const store = createStore(counter);
 
 const render = () => {
   ReactDOM.render(
-    <CounterEle
-      value={
-        store.getState()
-      }
-      onIncrement={() =>
-        store.dispatch({
-          type: 'INCREMENT',
-        })
-      }
-      onDecrement={() =>
-        store.dispatch({
-          type: 'DECREMENT',
-        })
-      }
-    />,
+
+    < CounterEle />,
     document.getElementById('root'),
   );
 };
@@ -83,13 +55,41 @@ const render = () => {
 
 store.subscribe(render);
 
+class CounterEle extends React.Component {
+  constructor() {
+    super();
+    console.log(store.getState());
+    this.state = store.getState();
+  }
 
-// setInterval(() => {
-//   store.dispatch({
-//     type: 'DECREMENT',
-//   });
-// }, 1000);
+  decrement() {
+    store.dispatch({
+      type: 'DECREMENT',
+    })
+  }
 
+  increment() {
+    store.dispatch({
+      type: 'INCREMENT',
+    })
+  }
+
+  render() {
+    return (
+      <div><h1>{store.getState()}</h1>
+        <button onClick={() => this.increment()} >
+          +
+    </button>
+        <button onClick={() => this.decrement()} >
+          -
+    </button>
+      </div>
+    );
+  }
+}
+
+
+render();
 
 class ReduxDemo extends React.Component {
   render() {

@@ -9,4 +9,3 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<RouterExample />, document.getElementById('root'));
 registerServiceWorker();
-
