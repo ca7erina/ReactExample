@@ -64,14 +64,12 @@ const todoApp = combineReducers({
 
 // Actions
 let nextTodoId = 0;
-const addTodo = (text) => {
-  nextTodoId += 1;
-  return ({
-    type: 'ADD_TODO',
-    id: nextTodoId,
-    text,
-  });
-};
+const addTodo = text => ({
+  type: 'ADD_TODO',
+  id: (nextTodoId++).toString(),
+  text,
+});
+
 
 const setVisibilityFilter = filter => ({
   type: 'SET_VISIBILITY_FILTER',
@@ -92,7 +90,7 @@ const Link = ({ active, children, onClick }) => {
   return (
     <a
       href=""
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault();
         onClick();
       }}
@@ -290,7 +288,7 @@ const mapStateToVisibleTodoProps = state => ({
 });
 
 const mapDispatchToVisibleTodoProps = dispatch => ({
-  onTodoClick: (id) => {
+  onTodoClick(id) {
     dispatch(toggleTodo(id));
   },
 });
@@ -374,16 +372,6 @@ ReactDOM.render(
 );
 
 export default TodoApp;
-
-
-
-
-
-
-
-
-
-
 
 
 // test
