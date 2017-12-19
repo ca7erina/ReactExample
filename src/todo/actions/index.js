@@ -6,6 +6,12 @@ export const addTodo = text => ({
   text,
 });
 
+export const receiveTodos = (filter, response) => ({
+  type: 'RECEIVE_TODOS',
+  filter,
+  response,
+});
+
 // export const setVisibilityFilter = filter => ({
 //   type: 'SET_VISIBILITY_FILTER',
 //   filter,
