@@ -1,22 +1,11 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { toggleTodo } from '../actions';
+import { getVisibleTodos } from '../reducers/todoApp';
 import TodoList from '../components/TodoList';
 
-const getVisibleTodos = (todos, filter) => {
-  switch (filter) {
-    case 'completed':
-      return todos.filter(t => t.completed);
-    case 'active':
-      return todos.filter(t => !t.completed);
-    case 'all':
-    default:
-      return todos;
-  }
-};
-
 const mapStateToProps = (state, props) => ({
-  todos: getVisibleTodos(state.todos, props.match.params.filter || 'all'),
+  todos: getVisibleTodos(state, props.match.params.filter || 'all'),
 });
 
 // const mapDispatchToProps = dispatch => ({
