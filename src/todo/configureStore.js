@@ -18,7 +18,15 @@ const addLoggingToDispatch = (store) => {
     return returnValue;
   };
 };
-
+const addPromiseSupportTODispatch = (store) => {
+  const rawDispatch = store.dispatch;
+  return (action) => {
+    if (typeof action.then === 'function') {
+      return action.then(rawDispatch);
+    }
+    return rawDispatch(action);
+  };
+};
 
 const configureStore = () => {
   // const persistedState = loadState();
@@ -28,6 +36,8 @@ const configureStore = () => {
   if (process.env.NODE_ENV !== 'production') {
     store.dispatch = addLoggingToDispatch(store);
   }
+
+  store.dispatch = addPromiseSupportTODispatch(store);
 
   // store.subscribe(throttle(() => {
   //   saveState({

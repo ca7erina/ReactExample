@@ -4,7 +4,7 @@ import React from 'react';
 import * as actions from '../actions';
 import { getVisibleTodos } from '../reducers/todoApp';
 import TodoList from '../components/TodoList';
-import fetchTodos from '../api/fakedb';
+import { fetchTodos } from '../api';
 
 
 class VisibleTodoList extends React.Component {
@@ -18,14 +18,18 @@ class VisibleTodoList extends React.Component {
   }
 
   fetchData() {
-    const { filter, receiveTodos } = this.props;
-    fetchTodos(filter).then(todos =>
-      receiveTodos(filter, todos));
+    const { filter, fetchTodos} = this.props;
+    fetchTodos(filter);
   }
 
   render() {
     const { toggleTodo, ...rest } = this.props;
-    return (<TodoList {...rest} onTodoClick={toggleTodo} />);
+    return (
+      <TodoList
+      {...rest}
+      onTodoClick={toggleTodo}
+    />
+    );
   }
 }
 
