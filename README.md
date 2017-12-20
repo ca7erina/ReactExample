@@ -18,6 +18,8 @@ npm install --save react-redux
 npm install --save redux redux-thunk redux-logger
 npm install --save react-router-dom
 npm install --save-dev babel-plugin-transform-object-rest-spread
+npm install --save redux-promise
+npm install --save redux-logger
 
 6. Install eslint:
 install:  https://www.npmjs.com/package/eslint
