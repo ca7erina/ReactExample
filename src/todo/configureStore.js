@@ -36,11 +36,16 @@ import todoApp from './reducers/todoApp';
 //   );
 // };
 
+const thunk = (store) => (next) => (action) =>
+  typeof action === 'function' ?
+    action(store.dispatch) :
+    next(action);
+
 const configureStore = () => {
   // const persistedState = loadState();
   // const store = createStore(todoApp, persistedState);
 
-  const middlewares = [promise];
+  const middlewares = [thunk];
 
   if (process.env.NODE_ENV !== 'production') {
     const loggerMiddleware = createLogger();

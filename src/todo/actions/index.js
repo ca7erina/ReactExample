@@ -7,7 +7,7 @@ export const addTodo = text => ({
   text,
 });
 
-export const requestTodos = filter => ({
+const requestTodos = filter => ({
   type: 'REQUEST_TODOS',
   filter,
 });
@@ -18,9 +18,10 @@ const receiveTodos = (filter, response) => ({
   response,
 });
 
-export const fetchTodos = filter =>
-  apis.fetchTodos(filter).then(response =>
-    receiveTodos(filter, response));
+export const fetchTodos = filter => (dispatch) => {
+  dispatch(requestTodos(filter));
+  return apis.fetchTodos(filter).then(response => dispatch(receiveTodos(filter, response)));
+};
 
 // export const setVisibilityFilter = filter => ({
 //   type: 'SET_VISIBILITY_FILTER',
